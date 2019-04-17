@@ -1,0 +1,31 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+	<h1>
+		{{ title }}
+	</h1>
+
+<div class="container">
+	<div class="card-columns">
+		<a routerLink="/mapa">
+			<div class="card bg-danger">
+				<div class="card-body text-center">
+					<i class="fas fa-map-marker-alt"></i>
+					<p class="card-text">Ver mapa</p>
+				</div>
+			</div>
+		</a>
+		<a routerLink="/tabla">
+			<div class="card bg-warning">
+				<div class="card-body text-center">
+					<i class="fas fa-address-book"></i>
+					<p class="card-text">Actualizar información</p>
+				</div>
+			</div>
+		</a>
+	</div>
+</div>
+
+
+</div>
+
+<router-outlet></router-outlet>
