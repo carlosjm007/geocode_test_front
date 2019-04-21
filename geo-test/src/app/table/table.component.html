@@ -1,3 +1,47 @@
-<p>
-  table works!
-</p>
+<div class="example-container mat-elevation-z8">
+
+	<table mat-table [dataSource]="dataShowed">
+
+		<!-- id Column -->
+		<ng-container matColumnDef="id">
+			<th mat-header-cell *matHeaderCellDef> Id </th>
+			<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+		</ng-container>
+
+		<!-- firstName Column -->
+		<ng-container matColumnDef="firstName">
+			<th mat-header-cell *matHeaderCellDef> First name </th>
+			<td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+		</ng-container>
+
+		<!-- lastName Column -->
+		<ng-container matColumnDef="lastName">
+			<th mat-header-cell *matHeaderCellDef> Last name </th>
+			<td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+		</ng-container>
+
+		<!-- actions Column -->
+		<ng-container matColumnDef="actions">
+			<th mat-header-cell *matHeaderCellDef> Actions </th>
+			<td mat-cell *matCellDef="let element; let i = index">
+				<div *ngIf="element.favorite; then thenBlock else elseBlock"></div>
+				<ng-template #thenBlock><span (click)="favoriteElement(i)"><mat-icon class="material-icons md-48">favorite</mat-icon></span></ng-template>
+				<ng-template #elseBlock><span (click)="favoriteElement(i)"><mat-icon class="material-icons md-48">favorite_border</mat-icon></span></ng-template>
+				
+				<span (click)="openEditForm(i)"><mat-icon class="material-icons md-48">border_color</mat-icon></span>
+				<span (click)="deleteElement(i)"><mat-icon class="material-icons md-48">delete</mat-icon></span>
+			</td>
+		</ng-container>
+
+		<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+		<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	
+	</table>
+	<mat-paginator
+		[length]="length"
+		[pageSize]="pageSize"
+		[pageSizeOptions]="pageSizeOptions"
+		(page)="onPaginateChange($event)"
+	>	
+	</mat-paginator>
+</div>

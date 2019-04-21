@@ -1,17 +1,20 @@
-<h1>{{ title }}</h1>
 
-<label for="direccion">Dirección:</label>
-<input #nueva_direccion type="text" name="direccion" (keyup.enter)="buscar_direccion(nueva_direccion.value)">
-<br>
-<label for="coordenadas">Coordenadas:</label>
-<input #nueva_coordenada type="text" name="coordenadas" value="{{coordenadas}}">
+<h2>{{ title }}</h2>
+
+<mat-form-field class="example-full-width">
+	<input matInput #nueva_direccion placeholder="Dirección" type="text" name="direccion" (keyup.enter)="buscar_direccion(nueva_direccion.value)">
+</mat-form-field>
+
+<mat-form-field class="example-full-width">
+	<input matInput  #nueva_coordenada placeholder="Coordenadas" type="text" name="coordenadas" value="{{coordenadas}}">
+</mat-form-field>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker
-    *ngFor="let m of markers; let i = index"
-  	[latitude]="m.lat"
-  	[longitude]="m.lng"
-  	[markerDraggable]="m.draggable"
-  	(dragEnd)="markerDragEnd(m, $event)"
-  ></agm-marker>
+	<agm-marker
+		*ngFor="let m of markers; let i = index"
+		[latitude]="m.lat"
+		[longitude]="m.lng"
+		[markerDraggable]="m.draggable"
+		(dragEnd)="markerDragEnd(m, $event)"
+	></agm-marker>
 </agm-map>
